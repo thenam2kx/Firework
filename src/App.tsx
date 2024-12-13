@@ -2,7 +2,7 @@ import { useRef } from "react"
 import { Fireworks } from '@fireworks-js/react'
 import './App.css'
 
-import audioFireWork from '../public/fireworkblast-106275.mp3'
+import audioFireWork from '/fireworkblast-106275.mp3'
 
 function App() {
   const fireworksRef = useRef(null)
@@ -26,8 +26,7 @@ function App() {
               volume: { min: 1, max: 100 },
               files: [audioFireWork]
             },
-            delay: { min: 50, max: 500 },
-            acceleration: 0.05,
+            delay: { min: 50, max: 500 }
           }}
         />
       </div>
