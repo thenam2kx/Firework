@@ -1,14 +1,36 @@
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 import { Fireworks } from '@fireworks-js/react'
 import './App.css'
 
 import audioFireWork from '/fireworkblast-106275.mp3'
+import firework_whistle from '/firework-whistle-190306.mp3'
+import knall1_lang from '/knall1_lang-48122.mp3'
+import fireworks_080492 from '/080492_fireworks-47616.mp3'
+
+import happyAudio from '/Happy_New_Year.mp3'
 
 function App() {
   const fireworksRef = useRef(null)
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    document.addEventListener('click', () => {
+      if (audioRef.current) {
+        audioRef.current.play();
+        audioRef.current.volume = 0.5;
+      }
+    });
+  }, []);
 
   return (
     <div className="w-screen h-screen relative overflow-hidden flex items-center justify-center bg-black">
+
+      <div className="">
+        <audio ref={audioRef} loop>
+          <source src={happyAudio} type="audio/mp3" />
+        </audio>
+      </div>
+
       <div className="fireworks-area absolute top-0 left-0 w-full h-full bg-black">
         <Fireworks
           className="absolute top-0 left-0 z-99 w-full h-full bg-black"
@@ -23,8 +45,8 @@ function App() {
             },
             sound: {
               enabled: true,
-              volume: { min: 1, max: 100 },
-              files: [audioFireWork]
+              volume: { min: 50, max: 100 },
+              files: [audioFireWork, firework_whistle, knall1_lang, fireworks_080492]
             },
             delay: { min: 50, max: 500 }
           }}
